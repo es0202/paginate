@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.4.1.min.js"></script>
+    <script src="./paging.js"></script>
+    <style>
+        div.dataTables_paginate {
+            width: 100%;
+            height: 56px;
+            text-align: center;
+        }
+
+        div.dataTables_paginate a.paginate_button {
+            display: inline-block;
+            height: 16px;
+            line-height: 16px;
+            margin: 16px 2px;
+            padding: 4px 8px;
+        }
+
+        div.dataTables_paginate [class*="paginate_"] {
+            font-size: 12px;
+            font-family: SimSun;
+            color: #474747;
+            cursor: pointer;
+        }
+
+        div.dataTables_paginate a.paginate_button.current {
+            background: #ea5404;
+            color: #fff;
+        }
+
+        /*div.pagination a.paginate_button.disabled {
+        display: none;
+    }*/
+        div.dataTables_paginate .paginate_input {
+            width: 30px;
+            height: 16px;
+            margin: 0 10px;
+            border: 1px solid #999999;
+            padding-left: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">1</div>
+    <div class="dataTables_paginate"></div>
+    <script>
+        var page = new Paging({
+            container: '.dataTables_paginate',
+            sumPage: 7,
+            index: 1
+        })
+        page.setOps(); //初始化
+        page.onPage = function (index) {
+            if (index > 0 && index < this.ops.sumPage + 1) {
+                page.setOps({
+                    index: index
+                })
+                $('.content').html(index)
+            }
+        }
+    </script>
+</body>
+
+</html>
